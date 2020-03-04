@@ -5,27 +5,20 @@ use std::fs;
 use rand::Rng;
 
 fn main() {
-    println!("reading command line arguments");
     let args: Vec<String> = env::args().collect();
     let filename = &args[1];
 
-    println!("reading from file {}", filename);
-
     let file_content = read_from_file(filename);
 
-    println!("File contains this:\n{}", file_content);
+    println!("File content:\n{}", file_content);
 
     let key = get_key(file_content.len());
-
-    println!("Encrypting the string");
     
     let encrypted_bytes = xor_strings(file_content, &key);
 
     println!("Encrypted string:\n{}", encrypted_bytes);
 
     write_to_file(&encrypted_bytes);
-
-    println!("Decrypting string");
 
     let decrypted_bytes = xor_strings(encrypted_bytes, &key);
 
@@ -39,8 +32,6 @@ fn get_key(length: usize) -> String {
     for _ in 0..length {
         key_bytes.push(rng.gen_range::<u8, u8, u8>(0, 127));
     }
-    
-    println!("first bytes of the key: {:?}", &key_bytes[..5]);
 
     return convert_bytes_to_str(&key_bytes);
 }
@@ -62,7 +53,7 @@ fn xor_strings(text: String, key: &String) -> String {
     return convert_bytes_to_str(&encoded_bytes);
 }
 
-fn read_from_file(filename: String) -> String {
+fn read_from_file(filename: &String) -> String {
     let file_content = fs::read_to_string(filename).expect("Something went wrong");
 
     return file_content;
