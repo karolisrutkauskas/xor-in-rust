@@ -1,0 +1,10 @@
+[package]
+name = "xor"
+version = "1.0.0"
+authors = ["karolisrutkauskas"]
+license = "MIT"
+description = "A tool to encrypt data using XOR cipher"
+repository = "https://github.com/karolisrutkauskas/xor-in-rust"
+
+[dependencies]
+rand = "0.7.3"

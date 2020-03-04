@@ -1,0 +1,2 @@
+This is a string
+for testing my xor encryption program
